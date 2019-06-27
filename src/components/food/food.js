@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro';
 import { View, Text, Image } from '@tarojs/components';
 import './Food.scss';
 import { AtTabs, AtTabsPane } from 'taro-ui';
+import Cata from './cata';
 class Food extends Component {
   constructor() {
     super();
@@ -24,18 +25,16 @@ class Food extends Component {
           onClick={this.changeTab.bind(this)}
         >
           <AtTabsPane current={this.state.current} index={0}>
-            <View style="padding: 100px 50px;background-color: #FAFBFC;text-align: center;">
-              标签页一的内容
-            </View>
+            <Cata />
           </AtTabsPane>
           <AtTabsPane current={this.state.current} index={1}>
             <View style="padding: 100px 50px;background-color: #FAFBFC;text-align: center;">
-              标签页二的内容
+              评价
             </View>
           </AtTabsPane>
           <AtTabsPane current={this.state.current} index={2}>
             <View style="padding: 100px 50px;background-color: #FAFBFC;text-align: center;">
-              标签页三的内容
+              商家
             </View>
           </AtTabsPane>
         </AtTabs>
