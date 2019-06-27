@@ -3,6 +3,7 @@ import { View, Text, Button } from '@tarojs/components';
 import './index.scss';
 // import Child from './Child';
 import Head from '../../components/head/head';
+import Food from '../../components/food/food';
 export default class Index extends Component {
   config = {
     navigationBarTitleText: '首页'
@@ -24,6 +25,7 @@ export default class Index extends Component {
     return (
       <View className="index">
         <Head />
+        <Food />
       </View>
     );
   }

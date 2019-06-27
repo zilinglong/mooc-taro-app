@@ -1,0 +1,20 @@
+.activity {
+  display: flex;
+  justify-content: space-between;
+  height: 30PX;
+  margin-top: 10PX;
+  padding: 0 10PX;
+  font-size: 12PX;
+  .type {
+    width: 20PX;
+    height: 20PX;
+    color: #fff;
+    background: #f00;
+    border-radius: 1PX;
+    text-align: center;
+    line-height: 20PX;
+  }
+  .length {
+    color: #ccc;
+  }
+}

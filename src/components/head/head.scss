@@ -16,6 +16,8 @@
     .store-text {
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
+      height: 80PX;
       margin-left: 10PX;
       font-size: 18PX;
       color: #fff;

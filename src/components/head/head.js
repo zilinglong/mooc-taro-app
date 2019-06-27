@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro';
 import { View, Text, Image } from '@tarojs/components';
 import Top from './top';
 import './head.scss';
+import Activity from './activity';
 class Head extends Component {
   constructor() {
     super();
@@ -31,10 +32,15 @@ class Head extends Component {
             <Text>{store.title}</Text>
             <Text>{store.notice}</Text>
             <View>
-              {store.tags.map((item, idx) => <Text className="tags-text" key={idx}>{item}</Text>)}
+              {store.tags.map((item, idx) => (
+                <Text className="tags-text" key={idx}>
+                  {item}
+                </Text>
+              ))}
             </View>
           </View>
         </View>
+        <Activity />
       </View>
     );
   }
