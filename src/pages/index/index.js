@@ -7,9 +7,13 @@ export default class Index extends Component {
   config = {
     navigationBarTitleText: '首页'
   };
-  state = {
-    name: '张三'
-  };
+  constructor() {
+    super();
+    this.state = {
+      name: '张三'
+    };
+  }
+
   componentWillMount() {}
 
   componentDidMount() {}
