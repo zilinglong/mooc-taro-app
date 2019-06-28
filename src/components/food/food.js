@@ -1,8 +1,9 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Text, Image } from '@tarojs/components';
 import { AtTabs, AtTabsPane } from 'taro-ui';
-import Catagory from './catagory';
+// import Catagory from './catagory';
 import FoodList from './foodList';
+import Cata from './cata';
 import './Food.scss';
 class Food extends Component {
   constructor() {
@@ -69,7 +70,8 @@ class Food extends Component {
             <View className="food-body">
               {/* <Cata onChangeCata={this.changeCata.bind(this)} name={'name cata'} /> */}
               <FoodList currentList={currentList} name={'name foodlist'} />
-              <Catagory name={'name1233'} />
+              {/* <Catagory name={'name1233'} />*/}
+              <Cata name={'123'} onChangeCata={this.changeCata.bind(this)} />
             </View>
           </AtTabsPane>
           <AtTabsPane current={this.state.current} index={1}>
