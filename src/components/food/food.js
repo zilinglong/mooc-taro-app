@@ -40,7 +40,7 @@ class Food extends Component {
         () => {
           console.log('foodList:', this.state.foodlist);
           this.setState({
-            currentList: this.state.foodlist.some(
+            currentList: this.state.foodlist.filter(
               item => item.pid === selectCata.id
             )
           });
@@ -51,6 +51,8 @@ class Food extends Component {
   getData(selectCata) {
     let imgurl = '../../assets/img/icon-head-tuan.png';
     return Array.from(Array(Math.round(Math.random() * 20)), (v, k) => ({
+      price: Math.round(Math.random() * 20),
+      sole: Math.round(Math.random() * 50),
       img: imgurl,
       pid: selectCata.id,
       id: selectCata.id + '_' + k,
@@ -58,7 +60,7 @@ class Food extends Component {
     }));
   }
   render() {
-    let { current, tabList, currentList } = this.state;
+    let { current, tabList, currentList, selectCata } = this.state;
     return (
       <View className="food">
         <AtTabs
@@ -69,7 +71,7 @@ class Food extends Component {
           <AtTabsPane current={this.state.current} index={0}>
             <View className="food-body">
               <Cata onChangeCata={this.changeCata.bind(this)} />
-              <FoodList currentList={currentList} name={'name foodlist'} />
+              <FoodList currentList={currentList} selectCata={selectCata} />
             </View>
           </AtTabsPane>
           <AtTabsPane current={this.state.current} index={1}>
