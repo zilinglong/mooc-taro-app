@@ -23,30 +23,30 @@ class Food extends Component {
   changeCata(selectCata) {
     console.log('food.js 切换分类');
     console.log('food.js:', selectCata);
-    // if (this.state.foodlist.some(item => item.pid === selectCata.id)) {
-    //   console.log('已经有数据，不用加载数据');
-    //   // 已经有数据，不用加载数据
-    //   this.setState({
-    //     currentList: this.state.foodlist.some(
-    //       item => item.pid === selectCata.id
-    //     )
-    //   });
-    // } else {
-    //   console.log('需要加载数据');
-    //   // 需要加载数据
-    //   this.setState(
-    //     {
-    //       foodlist: this.state.foodlist.concat(this.getData(selectCata))
-    //     },
-    //     () => {
-    //       this.setState({
-    //         currentList: this.state.foodlist.some(
-    //           item => item.pid === selectCata.id
-    //         )
-    //       });
-    //     }
-    //   );
-    // }
+    if (this.state.foodlist.some(item => item.pid === selectCata.id)) {
+      console.log('已经有数据，不用加载数据');
+      // 已经有数据，不用加载数据
+      this.setState({
+        currentList: this.state.foodlist.some(
+          item => item.pid === selectCata.id
+        )
+      });
+    } else {
+      console.log('需要加载数据');
+      // 需要加载数据
+      this.setState(
+        {
+          foodlist: this.state.foodlist.concat(this.getData(selectCata))
+        },
+        () => {
+          this.setState({
+            currentList: this.state.foodlist.some(
+              item => item.pid === selectCata.id
+            )
+          });
+        }
+      );
+    }
   }
   getData(selectCata) {
     let imgurl = '../../assets/img/icon-head-tuan.png';
@@ -68,10 +68,8 @@ class Food extends Component {
         >
           <AtTabsPane current={this.state.current} index={0}>
             <View className="food-body">
-              {/* <Cata onChangeCata={this.changeCata.bind(this)} name={'name cata'} /> */}
+              <Cata onChangeCata={this.changeCata.bind(this)} />
               <FoodList currentList={currentList} name={'name foodlist'} />
-              {/* <Catagory name={'name1233'} />*/}
-              <Cata name={'123'} onChangeCata={this.changeCata.bind(this)} />
             </View>
           </AtTabsPane>
           <AtTabsPane current={this.state.current} index={1}>
