@@ -5,7 +5,7 @@ class FoodList extends Component {
   render() {
     return (
       <View className="FoodList">
-        FoodList.this.props: {this.props.name}
+        FoodList.
       </View>
     );
   }

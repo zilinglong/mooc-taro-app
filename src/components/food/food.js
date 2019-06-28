@@ -21,7 +21,6 @@ class Food extends Component {
   }
   // 切换分类
   changeCata(selectCata) {
-    console.log('food.js 切换分类');
     console.log('food.js:', selectCata);
     if (this.state.foodlist.some(item => item.pid === selectCata.id)) {
       console.log('已经有数据，不用加载数据');
@@ -39,6 +38,7 @@ class Food extends Component {
           foodlist: this.state.foodlist.concat(this.getData(selectCata))
         },
         () => {
+          console.log('foodList:', this.state.foodlist);
           this.setState({
             currentList: this.state.foodlist.some(
               item => item.pid === selectCata.id
