@@ -26,7 +26,7 @@ class Head extends Component {
         <View className="store">
           <Image
             className="store-img"
-            src={require('../../assets/img/bg-head-bg.jpg')}
+            src={require('../../assets/img/store.jpg')}
           />
           <View className="store-text">
             <Text>{store.title}</Text>

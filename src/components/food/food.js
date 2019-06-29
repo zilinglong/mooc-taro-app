@@ -49,7 +49,7 @@ class Food extends Component {
     }
   }
   getData(selectCata) {
-    let imgurl = '../../assets/img/icon-head-tuan.png';
+    let imgurl = '../../assets/img/store.jpg';
     return Array.from(Array(Math.round(Math.random() * 20)), (v, k) => ({
       price: Math.round(Math.random() * 20),
       sole: Math.round(Math.random() * 50),

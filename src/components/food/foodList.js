@@ -13,7 +13,7 @@ class FoodList extends Component {
             <View key={idx} className="foodlist-item">
               <Image
                 className="foodlist-item-img"
-                src={require('../../assets/img/icon-head-tuan.png')}
+                src={require('../../assets/img/store.jpg')}
               />
               <View className="foodlist-item-info">
                 <Text>{item.title}</Text>
