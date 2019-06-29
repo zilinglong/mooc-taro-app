@@ -1,7 +1,8 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Text, Image } from '@tarojs/components';
+import { getEvent } from '../../utils/common';
 import './Cata.scss';
-
+let event = getEvent();
 class Cata extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +26,7 @@ class Cata extends Component {
       });
       // "这样直接使用"和"在回调函数中"是能够达到同一效果的两种使用方式
       this.props.onChangeCata && this.props.onChangeCata(item);
+      event.emit('changeCata');
     } else if (!this.state.selectCata) {
       this.setState(
         {
@@ -35,6 +37,7 @@ class Cata extends Component {
             this.props.onChangeCata(this.state.selectCata);
         }
       );
+      event.emit('changeCata');
     }
   }
   render() {

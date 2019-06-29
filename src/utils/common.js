@@ -2,7 +2,10 @@
 //缓存数据  H5 小程序
 //{food.id:{菜品信息 num},   }
 import Taro from '@tarojs/taro';
+import Event from './events';
 const foodKey = 'taro_meituan';
+// 实例化一个事件管理器
+let myEvent = new Event();
 export function getFoodCount(food) {
   let store = Taro.getStorageSync(foodKey);
   if (store && store[food.id]) {
@@ -46,4 +49,7 @@ export function setFoodCount(food, num, type, callBack) {
       callBack && callBack();
     }
   }
+}
+export function getEvent() {
+  return myEvent;
 }
