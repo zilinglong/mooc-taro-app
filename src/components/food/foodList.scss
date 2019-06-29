@@ -1,11 +1,15 @@
 .foodlist {
   padding: 10PX;
+  flex-grow: 1;
   .foodlist-item {
     display: flex;
+    flex-grow: 1;
     margin-top: 15PX;
     .foodlist-item-info {
+      position: relative;
       display: flex;
       flex-direction: column;
+      flex-grow: 1;
       justify-content: space-between;
       height: 80PX;
       margin-left: 10PX;

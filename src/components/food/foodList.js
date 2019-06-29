@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Text, Image } from '@tarojs/components';
 import './foodList.scss';
+import AddCut from '../addcut/addcut';
 class FoodList extends Component {
   render() {
     let { selectCata, currentList } = this.props;
@@ -10,11 +11,15 @@ class FoodList extends Component {
         <View className="foodlist-forlist">
           {currentList.map((item, idx) => (
             <View key={idx} className="foodlist-item">
-              <Image className="foodlist-item-img" src={require("../../assets/img/icon-head-tuan.png")} />
+              <Image
+                className="foodlist-item-img"
+                src={require('../../assets/img/icon-head-tuan.png')}
+              />
               <View className="foodlist-item-info">
                 <Text>{item.title}</Text>
                 <Text>月售：{item.sole}</Text>
                 <Text className="price">{item.price}元</Text>
+                <AddCut food={item} />
               </View>
             </View>
           ))}
