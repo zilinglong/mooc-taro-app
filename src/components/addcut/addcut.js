@@ -15,21 +15,46 @@ class AddCut extends Component {
     });
   }
   cutFood() {
+    if (this.props.food) {
+      if (this.state.num > 1) {
+        setFoodCount(this.props.food, this.state.num, 'cut', () => {
+          this.setState({
+            num: getFoodCount(this.props.food)
+          });
+        });
+      } else {
+        console.log('当前菜品加减菜品出现异常');
+      }
+    }
   }
-  AddFood() {}
+  AddFood() {
+    if (this.props.food) {
+      if (this.state.num > 1) {
+        setFoodCount(this.props.food, this.state.num, 'add', () => {
+          this.setState({
+            num: getFoodCount(this.props.food)
+          });
+        });
+      } else {
+        console.log('当前菜品加减菜品出现异常');
+      }
+    }
+  }
   render() {
+    let { num } = this.state;
+    let hide = num > 0 ? '' : 'hide';
     return (
       <View className="addcut">
         <Image
           onClick={this.cutFood.bind(this)}
-          className="opeate-img"
-          src={require('../../assets/img/icon-head-back.png')}
+          className={'opeate-img ' + hide}
+          src={require('../../assets/img/icon-num-cut.png')}
         />
-        <Text className="food-num">{this.state.num}</Text>
+        <Text className={'food-num ' + hide}>{num}</Text>
         <Image
           onClick={this.AddFood.bind(this)}
-          className="opeate-img"
-          src={require('../../assets/img/icon-head-back.png')}
+          className={'opeate-img'}
+          src={require('../../assets/img/icon-num-add.png')}
         />
       </View>
     );
