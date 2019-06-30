@@ -1,7 +1,6 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Text, Image } from '@tarojs/components';
 import { AtTabs, AtTabsPane } from 'taro-ui';
-// import Catagory from './catagory';
 import FoodList from './foodList';
 import Cata from './cata';
 import './Food.scss';
@@ -12,38 +11,44 @@ class Food extends Component {
       current: 0,
       tabList: [{ title: '点菜' }, { title: '评价' }, { title: '商家' }],
       foodlist: [], // 右边数据的整体的集合
-      currentList: [] // 传给右面的数据
+      currentList: [], // 传给右面的数据
+      selectCata: null
     };
   }
   changeTab(value) {
-    console.log('value:', value);
     this.setState({ current: value });
   }
   // 切换分类
   changeCata(selectCata) {
-    console.log('food.js:', selectCata);
-    if (this.state.foodlist.some(item => item.pid === selectCata.id)) {
-      console.log('已经有数据，不用加载数据');
-      // 已经有数据，不用加载数据
-      this.setState({
-        currentList: this.state.foodlist.some(
-          item => item.pid === selectCata.id
-        )
-      });
-    } else {
-      console.log('需要加载数据');
-      // 需要加载数据
+    this.setState({ selectCata });
+    if (this.state.foodlist.some(item => item.pid == selectCata.id)) {
+      //不用加载数据
       this.setState(
         {
-          foodlist: this.state.foodlist.concat(this.getData(selectCata))
+          currentList: this.state.foodlist.filter(
+            item => item.pid == selectCata.id
+          )
         },
         () => {
-          console.log('foodList:', this.state.foodlist);
-          this.setState({
-            currentList: this.state.foodlist.filter(
-              item => item.pid === selectCata.id
-            )
-          });
+          console.log('不用currentList：', this.state.currentList);
+        }
+      );
+    } else {
+      //需要加载数据
+      this.setState(
+        { foodlist: this.state.foodlist.concat(this.getData(selectCata)) },
+        () => {
+          console.log('需要foodList:', this.state.foodlist);
+          this.setState(
+            {
+              currentList: this.state.foodlist.filter(
+                item => item.pid == selectCata.id
+              )
+            },
+            () => {
+              console.log('需要：', this.state.currentList);
+            }
+          );
         }
       );
     }
