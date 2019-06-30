@@ -1,14 +1,15 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Text, Image } from '@tarojs/components';
 import './bottom.scss';
-import { getAllFoodInfo } from '../../utils/common';
+import { getAllFoodInfo, getEvent } from '../../utils/common';
+let events = getEvent();
 class Bottom extends Component {
   constructor() {
     super(...arguments);
     this.state = {
-      num: 1,
+      num: 0,
       sendPrice: 2,
-      supportTakeBySelf: false,
+      supportTakeBySelf: true,
       sendMustPrice: 20, // 满多少钱起送
       allPrice: 0
     };
@@ -17,29 +18,56 @@ class Bottom extends Component {
     // 要获取整体的存储的菜品数据，进行计算
     // 获取计算好的，设置给state
     let { allPrice, allNum } = getAllFoodInfo();
-    console.log('allNum:', allNum);
     this.setState({
       allPrice,
       num: allNum
     });
+    events.on('addcut', () => {
+      // 菜品发生变化
+      let { allPrice, allNum } = getAllFoodInfo();
+      this.setState({
+        allPrice,
+        num: allNum
+      });
+    });
   }
 
   render() {
-    const { num, sendPrice, supportTakeBySelf, sendMustPrice } = this.state;
+    const {
+      num,
+      sendPrice,
+      supportTakeBySelf,
+      sendMustPrice,
+      allPrice
+    } = this.state;
     return (
       <View className="bottom">
         <View className="bottom-body">
           {num ? <Text className="num">{num}</Text> : ''}
           <Image
             className="store-img"
-            src={require('../../assets/img/emptystore.png')}
+            src={
+              num > 0 ? (
+                require('../../assets/img/foodstore.png')
+              ) : (
+                require('../../assets/img/emptystore.png')
+              )
+            }
           />
           <View className="info">
-            <Text>{sendPrice ? `另需配送费${sendPrice}元 ` : ''}</Text>
-            <Text>{supportTakeBySelf ? '支持自取' : ''}</Text>
+            {allPrice ? (
+              <Text className="price">{allPrice}</Text>
+            ) : (
+              <Text>{sendPrice ? `另需配送费${sendPrice}元 ` : ''}</Text>
+            )}
+            <Text>{supportTakeBySelf ? '| 支持自取' : '| 不支持自取'}</Text>
           </View>
           <View className="submit">
-            <Text>{sendMustPrice ? `${sendMustPrice}元起送` : ''}</Text>
+            {allPrice >= sendMustPrice ? (
+              <Text className="go-pay">去结算</Text>
+            ) : (
+              <Text>{sendMustPrice ? `${sendMustPrice}元起送` : ''}</Text>
+            )}
           </View>
         </View>
       </View>
