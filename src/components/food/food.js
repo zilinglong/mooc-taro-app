@@ -69,22 +69,26 @@ class Food extends Component {
     return (
       <View className="food">
         <AtTabs
-          current={this.state.current}
+          current={current}
           tabList={tabList}
           onClick={this.changeTab.bind(this)}
         >
-          <AtTabsPane current={this.state.current} index={0}>
+          <AtTabsPane current={current} index={0}>
             <View className="food-body">
               <Cata onChangeCata={this.changeCata.bind(this)} />
-              <FoodList style="width:100%" currentList={currentList} selectCata={selectCata} />
+              <FoodList
+                style="width:100%"
+                currentList={currentList}
+                selectCata={selectCata}
+              />
             </View>
           </AtTabsPane>
-          <AtTabsPane current={this.state.current} index={1}>
+          <AtTabsPane current={current} index={1}>
             <View style="padding: 100px 50px;background-color: #FAFBFC;text-align: center;">
               评价
             </View>
           </AtTabsPane>
-          <AtTabsPane current={this.state.current} index={2}>
+          <AtTabsPane current={current} index={2}>
             <View style="padding: 100px 50px;background-color: #FAFBFC;text-align: center;">
               商家
             </View>
